@@ -9,13 +9,14 @@ const app = express();
 // request 是对请求报文的封装
 // response 是对相应报文的封装
 app.all('/server',(request,response)=>{
-    // 设置相应头  设置允许跨域
+    // 设置响应头  设置允许跨域
     response.setHeader('Access-Control-Allow-Origin','*');
 
     // 设置响应体
     response.send('HELLO AJAX - 2');
 });
 
+//json响应
 app.all('/json-server',(request,response)=>{
     // 设置响应头  设置允许跨域
     response.setHeader('Access-Control-Allow-Origin','*');
@@ -27,6 +28,16 @@ app.all('/json-server',(request,response)=>{
     let str = JSON.stringify(data);
     // 设置响应体
     response.send(str);
+});
+
+// 延时响应
+app.get('/delay',(request,response)=>{
+    // 设置响应头  设置允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*');
+    setTimeout(()=>{
+        // 设置响应体
+    response.send('延时响应');
+    },3000);
 });
 
 // 4、监听端口启动服务

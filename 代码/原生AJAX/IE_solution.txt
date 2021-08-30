@@ -1,0 +1,4 @@
+解决IE浏览器缓存问题:
+    在xhr.open方法的目标url后面加上 +Data.now()
+
+PS:正常人应该没人用IE吧
