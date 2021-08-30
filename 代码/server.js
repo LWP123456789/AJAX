@@ -31,13 +31,47 @@ app.all('/json-server',(request,response)=>{
 });
 
 // 延时响应
-app.get('/delay',(request,response)=>{
+app.all('/delay',(request,response)=>{
     // 设置响应头  设置允许跨域
     response.setHeader('Access-Control-Allow-Origin','*');
+    response.setHeader('Access-Control-Allow-Headers','*');
     setTimeout(()=>{
         // 设置响应体
     response.send('延时响应');
-    },3000);
+    },1000);
+});
+
+// jQuery 服务
+app.all('/jquery-server',(request,response)=>{
+    // 设置响应头  设置允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*');
+    response.setHeader('Access-Control-Allow-Headers','*');
+
+    const data = {name:'乐培'}
+    // response.send('Hello jQuery AJAX');
+    response.send(JSON.stringify(data));
+});
+
+// axios 服务
+app.all('/axios-server',(request,response)=>{
+    // 设置响应头  设置允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*');
+    response.setHeader('Access-Control-Allow-Headers','*');
+
+    const data = {name:'lep101'}
+    // response.send('Hello jQuery AJAX');
+    response.send(JSON.stringify(data));
+});
+
+//fetch 服务
+app.all('/fetch-server',(request,response)=>{
+    // 设置响应头  设置允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*');
+    response.setHeader('Access-Control-Allow-Headers','*');
+
+    const data = {name:'lep101'}
+    // response.send('Hello jQuery AJAX');
+    response.send(JSON.stringify(data));
 });
 
 // 4、监听端口启动服务
