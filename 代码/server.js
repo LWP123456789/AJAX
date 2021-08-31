@@ -74,6 +74,55 @@ app.all('/fetch-server',(request,response)=>{
     response.send(JSON.stringify(data));
 });
 
+//jsonp服务
+app.all('/jsonp-server',(request,response) => {
+    // response.send('console.log("hello jsonp-server")');
+    const data = {
+        name: 'lwpdbt.work'
+    };
+    //将数据转化为字符串
+    let str = JSON.stringify(data);
+    //返回结果
+    response.end(`handle(${str})`);
+})
+
+//用户名检测是否存在
+app.all('/check-username',(request,response) => {
+    // response.send('console.log("hello jsonp-server")');
+    const data = {
+        exist: 1,
+        msg: '用户名已经存在'
+    };
+    //将数据转化为字符串
+    let str = JSON.stringify(data);
+    //返回结果
+    response.end(`handle(${str})`);
+})
+
+app.all('/jquery-jsonp-server',(request,response) => {
+    // response.send('console.log("hello jsonp-server")');
+    const data = {
+        name: 'lep101',
+        city: ['广州','佛山','开封','深圳']
+    };
+    //将数据转化为字符串
+    let str = JSON.stringify(data);
+    //接收 callback 参数
+    let cb = request.query.callback;
+    
+    //返回结果
+    response.end(`${cb}(${str})`);
+})
+
+app.all('/cors-server', (request,response) => {
+    // 设置响应头  设置允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*');
+    response.setHeader('Access-Control-Allow-Headers','*');
+    response.setHeader('Access-Control-Allow-Method','*');
+
+    response.send('hello CORS');
+})
+
 // 4、监听端口启动服务
 app.listen(8000,()=>{
     console.log("服务以及启动,8000 端口监听中....");
